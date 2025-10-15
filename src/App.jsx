@@ -11,19 +11,24 @@ import './styles/App.css'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [hasVerifiedData, setHasVerifiedData] = useState(false)
   const [hasCompletedGoals, setHasCompletedGoals] = useState(false)
 
   // Verificar si hay una sesión guardada al cargar la app
   useEffect(() => {
     const savedAuth = localStorage.getItem('isAuthenticated')
-    const savedGoals = localStorage.getItem('userGoals')
+    const dataVerified = localStorage.getItem('dataVerified')
     const goalsCompleted = localStorage.getItem('goalsCompleted')
     
     if (savedAuth === 'true') {
       setIsAuthenticated(true)
     }
     
-    if (goalsCompleted === 'true' || savedGoals) {
+    if (dataVerified === 'true') {
+      setHasVerifiedData(true)
+    }
+    
+    if (goalsCompleted === 'true') {
       setHasCompletedGoals(true)
     }
   }, [])
@@ -35,6 +40,11 @@ function App() {
     }
   }
 
+  const handleDataVerification = () => {
+    setHasVerifiedData(true)
+    localStorage.setItem('dataVerified', 'true')
+  }
+
   const handleGoalsComplete = () => {
     setHasCompletedGoals(true)
     localStorage.setItem('goalsCompleted', 'true')
@@ -42,8 +52,10 @@ function App() {
 
   const handleLogout = () => {
     setIsAuthenticated(false)
+    setHasVerifiedData(false)
     setHasCompletedGoals(false)
     localStorage.removeItem('isAuthenticated')
+    localStorage.removeItem('dataVerified')
     localStorage.removeItem('goalsCompleted')
     localStorage.removeItem('userGoals')
   }
@@ -53,18 +65,23 @@ function App() {
     return <Login onLogin={handleLogin} />
   }
 
-  // Si está autenticado pero no ha completado objetivos, mostrar Goals
-  if (isAuthenticated && !hasCompletedGoals) {
+  // Si está autenticado pero no ha verificado datos, mostrar Home
+  if (isAuthenticated && !hasVerifiedData) {
+    return <Home onDataVerified={handleDataVerification} />
+  }
+
+  // Si ha verificado datos pero no ha completado objetivos, mostrar Goals
+  if (isAuthenticated && hasVerifiedData && !hasCompletedGoals) {
     return <Goals onComplete={handleGoalsComplete} />
   }
 
-  // Si está autenticado y ha completado objetivos, mostrar la aplicación normal
+  // Si ha completado todo, mostrar la aplicación normal con navbar
   return (
     <div className="App">
       <Navbar onLogout={handleLogout} />
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Nutrition />} />
           <Route path="/nutrition" element={<Nutrition />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

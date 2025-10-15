@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './Home.css'
 
-function Home() {
+function Home({ onDataVerified }) {
   const [userData] = useState({
     name: "Nayeli Carrizales",
     age: "22 años",
@@ -11,10 +11,8 @@ function Home() {
   })
 
   const handleContinue = () => {
-    // Simular navegación al cuestionario de objetivos
-    // En este punto el usuario ya completó los objetivos, 
-    // por lo que podríamos navegar a otra sección
-    alert('¡Perfil verificado! Bienvenida a tu dashboard nutricional.')
+    // Verificar datos y avanzar al siguiente paso (Goals)
+    onDataVerified()
   }
 
   return (
