@@ -13,7 +13,7 @@ function Navbar({ onLogout }) {
       <div className="nav-container">
         <Link to="/" className="nav-logo">
           <img 
-            src="https://via.placeholder.com/40x40/ffd700/333333?text=S" 
+            src="https://via.placeholder.com/40x40/FFD61B/333333?text=S" 
             alt="Salinas Logo" 
             className="logo-img"
           />

@@ -16,7 +16,7 @@ function Home() {
         <div className="welcome-section">
           <div className="avatar">
             <img 
-              src="https://via.placeholder.com/80x80/646cff/ffffff?text=N" 
+              src="https://via.placeholder.com/80x80/FFD61B/333333?text=N" 
               alt="Profile Avatar" 
               className="avatar-img"
             />
