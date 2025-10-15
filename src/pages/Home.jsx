@@ -10,6 +10,13 @@ function Home() {
     workplace: "Desarrolladora Frontend React"
   })
 
+  const handleContinue = () => {
+    // Simular navegación al cuestionario de objetivos
+    // En este punto el usuario ya completó los objetivos, 
+    // por lo que podríamos navegar a otra sección
+    alert('¡Perfil verificado! Bienvenida a tu dashboard nutricional.')
+  }
+
   return (
     <div className="home">
       <div className="profile-container">
@@ -80,7 +87,7 @@ function Home() {
         </div>
 
         <div className="action-section">
-          <button className="continue-btn">
+          <button className="continue-btn" onClick={handleContinue}>
             Continuar
           </button>
         </div>

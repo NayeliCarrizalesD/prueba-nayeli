@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
+import Goals from './components/Goals'
 import Home from './pages/Home'
 import Nutrition from './pages/Nutrition'
 import About from './pages/About'
@@ -10,12 +11,20 @@ import './styles/App.css'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [hasCompletedGoals, setHasCompletedGoals] = useState(false)
 
   // Verificar si hay una sesión guardada al cargar la app
   useEffect(() => {
     const savedAuth = localStorage.getItem('isAuthenticated')
+    const savedGoals = localStorage.getItem('userGoals')
+    const goalsCompleted = localStorage.getItem('goalsCompleted')
+    
     if (savedAuth === 'true') {
       setIsAuthenticated(true)
+    }
+    
+    if (goalsCompleted === 'true' || savedGoals) {
+      setHasCompletedGoals(true)
     }
   }, [])
 
@@ -26,9 +35,17 @@ function App() {
     }
   }
 
+  const handleGoalsComplete = () => {
+    setHasCompletedGoals(true)
+    localStorage.setItem('goalsCompleted', 'true')
+  }
+
   const handleLogout = () => {
     setIsAuthenticated(false)
+    setHasCompletedGoals(false)
     localStorage.removeItem('isAuthenticated')
+    localStorage.removeItem('goalsCompleted')
+    localStorage.removeItem('userGoals')
   }
 
   // Si no está autenticado, mostrar login
@@ -36,7 +53,12 @@ function App() {
     return <Login onLogin={handleLogin} />
   }
 
-  // Si está autenticado, mostrar la aplicación normal
+  // Si está autenticado pero no ha completado objetivos, mostrar Goals
+  if (isAuthenticated && !hasCompletedGoals) {
+    return <Goals onComplete={handleGoalsComplete} />
+  }
+
+  // Si está autenticado y ha completado objetivos, mostrar la aplicación normal
   return (
     <div className="App">
       <Navbar onLogout={handleLogout} />
