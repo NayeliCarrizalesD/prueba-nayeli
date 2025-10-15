@@ -30,7 +30,7 @@ function Navbar({ onLogout }) {
         <ul className="nav-menu-right">
           <li className="nav-item">
             <Link to="/home" className="nav-link user-link" title="Ver perfil de usuario">
-              👤 Perfil
+              👤
             </Link>
           </li>
           <li className="nav-item">
