@@ -54,7 +54,7 @@ function Home({ onDataVerified, onLogout }) {
         <div className="welcome-section">
           <div className="avatar">
             <div className="avatar-icon">
-              👤
+              <FaUser />
             </div>
           </div>
           <div className="welcome-text">
@@ -70,15 +70,15 @@ function Home({ onDataVerified, onLogout }) {
           <div className="edit-actions">
             {!isEditing ? (
               <button className="edit-btn" onClick={handleEditToggle}>
-                ✏️ Editar datos
+                <FaEdit /> Editar datos
               </button>
             ) : (
               <div className="edit-controls">
                 <button className="save-btn" onClick={handleSave}>
-                  ✅ Guardar
+                  <FaSave /> Guardar
                 </button>
                 <button className="cancel-btn" onClick={handleEditToggle}>
-                  ❌ Cancelar
+                  <FaTimes /> Cancelar
                 </button>
               </div>
             )}
@@ -88,7 +88,7 @@ function Home({ onDataVerified, onLogout }) {
         <div className="user-data">
           <div className="data-row">
             <div className="data-item">
-              <span className="data-icon">👤</span>
+              <span className="data-icon"><FaUser /></span>
               <div className="data-content">
                 <span className="data-label">Nombre</span>
                 {isEditing ? (
@@ -104,7 +104,7 @@ function Home({ onDataVerified, onLogout }) {
               </div>
             </div>
             <div className="data-item">
-              <span className="data-icon">🎂</span>
+              <span className="data-icon"><FaBirthdayCake /></span>
               <div className="data-content">
                 <span className="data-label">Edad</span>
                 {isEditing ? (
@@ -123,7 +123,7 @@ function Home({ onDataVerified, onLogout }) {
 
           <div className="data-row">
             <div className="data-item">
-              <span className="data-icon">📧</span>
+              <span className="data-icon"><FaEnvelope /></span>
               <div className="data-content">
                 <span className="data-label">Correo electrónico</span>
                 {isEditing ? (
@@ -139,7 +139,7 @@ function Home({ onDataVerified, onLogout }) {
               </div>
             </div>
             <div className="data-item">
-              <span className="data-icon">📱</span>
+              <span className="data-icon"><FaPhone /></span>
               <div className="data-content">
                 <span className="data-label">Teléfono celular</span>
                 {isEditing ? (
@@ -158,7 +158,7 @@ function Home({ onDataVerified, onLogout }) {
 
           <div className="data-row">
             <div className="data-item full-width">
-              <span className="data-icon">💼</span>
+              <span className="data-icon"><FaBriefcase /></span>
               <div className="data-content">
                 <span className="data-label">Lugar de trabajo</span>
                 {isEditing ? (
