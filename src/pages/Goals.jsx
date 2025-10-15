@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Navbar from './Navbar'
-import './Goals.css'
+import Navbar from '../components/Navbar'
+import '../styles/Goals.css'
 
 function Goals({ onComplete, onLogout }) {
   const [formData, setFormData] = useState({

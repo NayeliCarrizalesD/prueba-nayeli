@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { FaUser, FaBirthdayCake, FaEnvelope, FaPhone, FaBriefcase, FaEdit, FaSave, FaTimes } from 'react-icons/fa'
 import Swal from 'sweetalert2'
 import Navbar from '../components/Navbar'
-import './Home.css'
+import '../styles/Home.css'
 
 function Home({ onDataVerified, onLogout }) {
   const [userData, setUserData] = useState({

@@ -1,5 +1,5 @@
 import Navbar from '../components/Navbar'
-import './About.css'
+import '../styles/About.css'
 
 function About({ onLogout }) {
   return (

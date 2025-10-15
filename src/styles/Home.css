@@ -221,7 +221,7 @@
 }
 
 .continue-btn {
-  background: #ffd700;
+  background: #FFD61B;
   color: #333;
   border: none;
   padding: 1rem 3rem;
@@ -230,13 +230,13 @@
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 214, 27, 0.3);
 }
 
 .continue-btn:hover {
-  background: #ffed4e;
+  background: #F7B733;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(255, 214, 27, 0.4);
 }
 
 .continue-btn:active {
