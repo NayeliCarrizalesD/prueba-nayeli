@@ -1,0 +1,26 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Para la página Home, remover padding */
+.main-content:has(.home) {
+  padding: 0;
+}
+
+/* Para otras páginas mantener el padding */
+.main-content:not(:has(.home)) {
+  padding: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-content:not(:has(.home)) {
+    padding: 1rem;
+  }
+}
