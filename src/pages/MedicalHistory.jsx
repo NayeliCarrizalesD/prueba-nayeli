@@ -10,7 +10,18 @@ function MedicalHistory({ onComplete, onLogout }) {
     allergyDescription: '',
     hasSurgery: '',
     surgeryDescription: '',
-    surgeryDate: ''
+    surgeryDate: '',
+    // Historial familiar
+    familyHistory: [],
+    // Preguntas adicionales
+    hasDiet: '',
+    hasMedication: '',
+    hasReductiveTreatment: '',
+    treatmentDuration: '',
+    hasSupplements: '',
+    supplementsDescription: '',
+    hasMedicalStudies: '',
+    studiesDescription: ''
   })
 
   const [currentStep, setCurrentStep] = useState(1)
@@ -19,6 +30,29 @@ function MedicalHistory({ onComplete, onLogout }) {
     setMedicalData(prev => ({
       ...prev,
       [field]: value
+    }))
+  }
+
+  const addFamilyHistory = () => {
+    setMedicalData(prev => ({
+      ...prev,
+      familyHistory: [...prev.familyHistory, { relationship: '', condition: '' }]
+    }))
+  }
+
+  const updateFamilyHistory = (index, field, value) => {
+    setMedicalData(prev => ({
+      ...prev,
+      familyHistory: prev.familyHistory.map((item, i) => 
+        i === index ? { ...item, [field]: value } : item
+      )
+    }))
+  }
+
+  const removeFamilyHistory = (index) => {
+    setMedicalData(prev => ({
+      ...prev,
+      familyHistory: prev.familyHistory.filter((_, i) => i !== index)
     }))
   }
 
@@ -184,6 +218,262 @@ function MedicalHistory({ onComplete, onLogout }) {
                 </div>
               )}
             </div>
+
+            {/* Pregunta 4: Historial Familiar */}
+            <div className="question-block full-width">
+              <h3>¿Algún familiar directo ha sufrido alguna afección médica como enfermedades del corazón, cáncer, diabetes u otro padecimiento crónico?</h3>
+              <div className="family-history-section">
+                {medicalData.familyHistory.map((item, index) => (
+                  <div key={index} className="family-history-item">
+                    <select
+                      value={item.relationship}
+                      onChange={(e) => updateFamilyHistory(index, 'relationship', e.target.value)}
+                      className="relationship-select"
+                    >
+                      <option value="">Seleccionar parentesco</option>
+                      <option value="Abuelo Materno">Abuelo Materno</option>
+                      <option value="Abuela Materna">Abuela Materna</option>
+                      <option value="Abuelo Paterno">Abuelo Paterno</option>
+                      <option value="Abuela Paterna">Abuela Paterna</option>
+                      <option value="Padre">Padre</option>
+                      <option value="Madre">Madre</option>
+                      <option value="Hermano">Hermano</option>
+                      <option value="Hermana">Hermana</option>
+                      <option value="Hijo">Hijo</option>
+                      <option value="Hija">Hija</option>
+                    </select>
+                    <input
+                      type="text"
+                      placeholder="Ej: Diabetes, Hipertensión..."
+                      value={item.condition}
+                      onChange={(e) => updateFamilyHistory(index, 'condition', e.target.value)}
+                      className="condition-input"
+                    />
+                    <button 
+                      type="button" 
+                      onClick={() => removeFamilyHistory(index)}
+                      className="remove-btn"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+                <button 
+                  type="button" 
+                  onClick={addFamilyHistory}
+                  className="add-family-btn"
+                >
+                  ➕ Agregar otro familiar
+                </button>
+              </div>
+            </div>
+
+            {/* Pregunta 5: Dietas */}
+            <div className="question-block">
+              <h3>¿Has hecho dieta para bajar de peso?</h3>
+              <div className="radio-group">
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="hasDiet"
+                    value="Si"
+                    checked={medicalData.hasDiet === 'Si'}
+                    onChange={(e) => handleInputChange('hasDiet', e.target.value)}
+                  />
+                  <span className="radio-custom"></span>
+                  Sí
+                </label>
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="hasDiet"
+                    value="No"
+                    checked={medicalData.hasDiet === 'No'}
+                    onChange={(e) => handleInputChange('hasDiet', e.target.value)}
+                  />
+                  <span className="radio-custom"></span>
+                  No
+                </label>
+              </div>
+            </div>
+
+            {/* Pregunta 6: Medicamentos */}
+            <div className="question-block">
+              <h3>¿Has tomado medicamentos para bajar de peso?</h3>
+              <div className="radio-group">
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="hasMedication"
+                    value="Si"
+                    checked={medicalData.hasMedication === 'Si'}
+                    onChange={(e) => handleInputChange('hasMedication', e.target.value)}
+                  />
+                  <span className="radio-custom"></span>
+                  Sí
+                </label>
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="hasMedication"
+                    value="No"
+                    checked={medicalData.hasMedication === 'No'}
+                    onChange={(e) => handleInputChange('hasMedication', e.target.value)}
+                  />
+                  <span className="radio-custom"></span>
+                  No
+                </label>
+              </div>
+            </div>
+
+            {/* Pregunta 7: Tratamientos Reductivos */}
+            <div className="question-block">
+              <h3>¿Has tomado tratamientos reductivos anteriormente?</h3>
+              <div className="radio-group">
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="hasReductiveTreatment"
+                    value="Si"
+                    checked={medicalData.hasReductiveTreatment === 'Si'}
+                    onChange={(e) => handleInputChange('hasReductiveTreatment', e.target.value)}
+                  />
+                  <span className="radio-custom"></span>
+                  Sí
+                </label>
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="hasReductiveTreatment"
+                    value="No"
+                    checked={medicalData.hasReductiveTreatment === 'No'}
+                    onChange={(e) => handleInputChange('hasReductiveTreatment', e.target.value)}
+                  />
+                  <span className="radio-custom"></span>
+                  No
+                </label>
+              </div>
+              {medicalData.hasReductiveTreatment === 'Si' && (
+                <div className="treatment-details">
+                  <div className="time-options">
+                    <label className="time-option">
+                      <input
+                        type="radio"
+                        name="treatmentDuration"
+                        value="Cavitación"
+                        checked={medicalData.treatmentDuration === 'Cavitación'}
+                        onChange={(e) => handleInputChange('treatmentDuration', e.target.value)}
+                      />
+                      <span>ej. Cavitación</span>
+                    </label>
+                    <label className="time-option">
+                      <input
+                        type="radio"
+                        name="treatmentDuration"
+                        value="6 meses"
+                        checked={medicalData.treatmentDuration === '6 meses'}
+                        onChange={(e) => handleInputChange('treatmentDuration', e.target.value)}
+                      />
+                      <span>ej. 6 meses</span>
+                    </label>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Pregunta 8: Suplementos */}
+            <div className="question-block">
+              <h3>¿Utilizas algún suplemento o tomas vitaminas de manera regular?</h3>
+              <div className="radio-group">
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="hasSupplements"
+                    value="Si"
+                    checked={medicalData.hasSupplements === 'Si'}
+                    onChange={(e) => handleInputChange('hasSupplements', e.target.value)}
+                  />
+                  <span className="radio-custom"></span>
+                  Sí
+                </label>
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="hasSupplements"
+                    value="No"
+                    checked={medicalData.hasSupplements === 'No'}
+                    onChange={(e) => handleInputChange('hasSupplements', e.target.value)}
+                  />
+                  <span className="radio-custom"></span>
+                  No
+                </label>
+              </div>
+              {medicalData.hasSupplements === 'Si' && (
+                <div className="description-input">
+                  <input
+                    type="text"
+                    placeholder="ej. Vitamina B, Proteínas"
+                    value={medicalData.supplementsDescription}
+                    onChange={(e) => handleInputChange('supplementsDescription', e.target.value)}
+                    className="supplements-description"
+                  />
+                  <small>¿Cuál?</small>
+                </div>
+              )}
+            </div>
+
+            {/* Pregunta 9: Estudios Médicos */}
+            <div className="question-block">
+              <h3>¿Te has realizado estudios médicos recientes?</h3>
+              <div className="radio-group">
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="hasMedicalStudies"
+                    value="Si"
+                    checked={medicalData.hasMedicalStudies === 'Si'}
+                    onChange={(e) => handleInputChange('hasMedicalStudies', e.target.value)}
+                  />
+                  <span className="radio-custom"></span>
+                  Sí
+                </label>
+                <label className="radio-option">
+                  <input
+                    type="radio"
+                    name="hasMedicalStudies"
+                    value="No"
+                    checked={medicalData.hasMedicalStudies === 'No'}
+                    onChange={(e) => handleInputChange('hasMedicalStudies', e.target.value)}
+                  />
+                  <span className="radio-custom"></span>
+                  No
+                </label>
+              </div>
+              {medicalData.hasMedicalStudies === 'Si' && (
+                <div className="description-input">
+                  <input
+                    type="text"
+                    placeholder="ej. Química Sanguínea, Hemoglobina, etc."
+                    value={medicalData.studiesDescription}
+                    onChange={(e) => handleInputChange('studiesDescription', e.target.value)}
+                    className="studies-description"
+                  />
+                  <small>¿Qué tipo de estudio médico?</small>
+                  <div className="file-upload-section">
+                    <button type="button" className="upload-btn">
+                      📎 Adjuntar archivo
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="save-section">
+            <p>Deseo continuar después.</p>
+            <button type="button" className="save-btn">
+              💾 Guardar mi avance
+            </button>
           </div>
 
           <div className="action-section">

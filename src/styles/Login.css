@@ -33,14 +33,14 @@
 }
 
 .login-header h1 {
-  color: #333;
+  color: #000;
   font-size: 2rem;
   font-weight: 600;
   margin: 0 0 0.5rem 0;
 }
 
 .login-header p {
-  color: #666;
+  color: #000;
   font-size: 1rem;
   margin: 0;
 }
@@ -54,11 +54,12 @@
 
 .form-group {
   text-align: left;
+  color: #000;
 }
 
 .form-group label {
   display: block;
-  color: #333;
+  color: #000;
   font-weight: 600;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
@@ -67,17 +68,20 @@
 .form-group input {
   width: 100%;
   padding: 1rem;
-  border: 2px solid #e9ecef;
+  border: 2px solid #495057;
   border-radius: 12px;
   font-size: 1rem;
   transition: all 0.3s ease;
   box-sizing: border-box;
+  background-color: #343a40;
+  color: #000 !important;
 }
 
 .form-group input:focus {
   outline: none;
   border-color: #FFD61B;
   box-shadow: 0 0 0 3px rgba(255, 214, 27, 0.2);
+  background-color: #fffbdb;
 }
 
 .form-group input::placeholder {
@@ -96,7 +100,7 @@
 
 .login-btn {
   background: linear-gradient(135deg, #FFD61B 0%, #F7B733 50%, #FC4A1A 100%);
-  color: #333;
+  color: #000;
   border: none;
   padding: 1rem 2rem;
   font-size: 1rem;
@@ -132,14 +136,14 @@
 }
 
 .demo-credentials h4 {
-  color: #495057;
+  color: #000;
   font-size: 0.9rem;
   margin: 0 0 0.5rem 0;
   text-align: center;
 }
 
 .demo-credentials p {
-  color: #6c757d;
+  color: #000;
   font-size: 0.8rem;
   margin: 0.2rem 0;
   font-family: monospace;
