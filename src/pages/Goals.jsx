@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
-import '../styles/Goals.css'
+import PageHeader from '../components/PageHeader'
 
-function Goals({ onComplete, onLogout }) {
+function Goals({ userName = "Nayeli Carrizales", onComplete, onLogout }) {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     currentWeight: '72.0',
     height: '',
@@ -17,6 +19,14 @@ function Goals({ onComplete, onLogout }) {
     { id: 'healthyEating', label: 'Alimentación saludable', icon: '🚚' },
     { id: 'muscleGain', label: 'Aumento de masa muscular', icon: '💪' },
     { id: 'diseaseControl', label: 'Control de enfermedades', icon: '🩺' }
+  ]
+
+  const progressIndicators = [
+    { icon: '📊', status: 'active' },
+    { icon: '❤️', status: '' },
+    { icon: '🏃‍♀️', status: '' },
+    { icon: '⏰', status: '' },
+    { icon: '📋', status: '' }
   ]
 
   const handleInputChange = (e) => {
@@ -38,7 +48,14 @@ function Goals({ onComplete, onLogout }) {
     e.preventDefault()
     // Guardar datos del formulario
     localStorage.setItem('userGoals', JSON.stringify(formData))
-    onComplete()
+    
+    // Llamar a onComplete si existe (para actualizar el estado en App.jsx)
+    if (onComplete) {
+      onComplete()
+    }
+    
+    // Navegar directamente al historial médico
+    navigate('/medical-history')
   }
 
   const handleSaveProgress = () => {
@@ -50,26 +67,7 @@ function Goals({ onComplete, onLogout }) {
     <div className="goals-container">
       <Navbar onLogout={onLogout} />
       <div className="goals-content">
-        <div className="goals-header">
-          <div className="user-info">
-            <div className="user-avatar-icon">
-              👤
-            </div>
-            <div className="user-text">
-              <h2>Nutrición</h2>
-              <h1>Hola, Nayeli Carrizales</h1>
-              <p>Para brindarte una mejor atención, contesta las siguientes preguntas. La información es confidencial y esencial para crear tu perfil y que recibas la mejor atención.</p>
-            </div>
-          </div>
-          
-          <div className="progress-indicators">
-            <div className="indicator active">📊</div>
-            <div className="indicator">❤️</div>
-            <div className="indicator">🏃‍♀️</div>
-            <div className="indicator">⏰</div>
-            <div className="indicator">📋</div>
-          </div>
-        </div>
+        <PageHeader userName={userName} indicators={progressIndicators} />
 
         <form className="goals-form" onSubmit={handleSubmit}>
           <div className="section">

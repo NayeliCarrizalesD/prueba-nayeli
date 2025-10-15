@@ -2,10 +2,9 @@ import { useState } from 'react'
 import { FaUser, FaBirthdayCake, FaEnvelope, FaPhone, FaBriefcase, FaEdit, FaSave, FaTimes } from 'react-icons/fa'
 import Swal from 'sweetalert2'
 import Navbar from '../components/Navbar'
-import '../styles/Home.css'
 
-function Home({ onDataVerified, onLogout }) {
-  const [userData, setUserData] = useState({
+function Home({ userData, onUserDataUpdate, onDataVerified, onLogout }) {
+  const [localUserData, setLocalUserData] = useState(userData || {
     name: "Nayeli Carrizales",
     age: "22 años",
     email: "nayeli.carrizales@gmail.com",
@@ -16,7 +15,7 @@ function Home({ onDataVerified, onLogout }) {
   const [isEditing, setIsEditing] = useState(false)
 
   const handleInputChange = (field, value) => {
-    setUserData(prev => ({
+    setLocalUserData(prev => ({
       ...prev,
       [field]: value
     }))
@@ -28,7 +27,11 @@ function Home({ onDataVerified, onLogout }) {
 
   const handleSave = () => {
     setIsEditing(false)
-    console.log('Datos guardados:', userData)
+    // Actualizar los datos del usuario globalmente
+    if (onUserDataUpdate) {
+      onUserDataUpdate(localUserData)
+    }
+    console.log('Datos guardados:', localUserData)
     
     Swal.fire({
       title: '¡Datos guardados!',
@@ -59,7 +62,7 @@ function Home({ onDataVerified, onLogout }) {
           </div>
           <div className="welcome-text">
             <h2>¡Bienvenida</h2>
-            <h1>{userData.name}!</h1>
+            <h1>{localUserData.name}!</h1>
           </div>
         </div>
 
@@ -95,11 +98,11 @@ function Home({ onDataVerified, onLogout }) {
                   <input
                     type="text"
                     className="data-input"
-                    value={userData.name}
+                    value={localUserData.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
                   />
                 ) : (
-                  <span className="data-value">{userData.name}</span>
+                  <span className="data-value">{localUserData.name}</span>
                 )}
               </div>
             </div>
@@ -111,11 +114,11 @@ function Home({ onDataVerified, onLogout }) {
                   <input
                     type="text"
                     className="data-input"
-                    value={userData.age}
+                    value={localUserData.age}
                     onChange={(e) => handleInputChange('age', e.target.value)}
                   />
                 ) : (
-                  <span className="data-value">{userData.age}</span>
+                  <span className="data-value">{localUserData.age}</span>
                 )}
               </div>
             </div>
@@ -130,11 +133,11 @@ function Home({ onDataVerified, onLogout }) {
                   <input
                     type="email"
                     className="data-input"
-                    value={userData.email}
+                    value={localUserData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                   />
                 ) : (
-                  <span className="data-value">{userData.email}</span>
+                  <span className="data-value">{localUserData.email}</span>
                 )}
               </div>
             </div>
@@ -146,11 +149,11 @@ function Home({ onDataVerified, onLogout }) {
                   <input
                     type="tel"
                     className="data-input"
-                    value={userData.phone}
+                    value={localUserData.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
                   />
                 ) : (
-                  <span className="data-value">{userData.phone}</span>
+                  <span className="data-value">{localUserData.phone}</span>
                 )}
               </div>
             </div>
@@ -165,11 +168,11 @@ function Home({ onDataVerified, onLogout }) {
                   <input
                     type="text"
                     className="data-input"
-                    value={userData.workplace}
+                    value={localUserData.workplace}
                     onChange={(e) => handleInputChange('workplace', e.target.value)}
                   />
                 ) : (
-                  <span className="data-value highlighted">{userData.workplace}</span>
+                  <span className="data-value highlighted">{localUserData.workplace}</span>
                 )}
               </div>
             </div>

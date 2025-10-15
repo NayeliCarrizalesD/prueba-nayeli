@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import '../styles/Login.css'
 
 function Login({ onLogin }) {
   const [credentials, setCredentials] = useState({
@@ -47,7 +46,7 @@ function Login({ onLogin }) {
       <div className="login-card">
         <div className="login-header">
           <div className="logo">
-            <img src="https://via.placeholder.com/60x60/FFD61B/333333?text=S" alt="Salinas Logo" />
+            <img src="/logo.png" alt="Salinas Logo" />
           </div>
           <h1>Iniciar Sesión</h1>
           <p>Accede a tu cuenta de Salinas</p>

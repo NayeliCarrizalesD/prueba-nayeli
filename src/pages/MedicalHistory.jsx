@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import Navbar from '../components/Navbar'
-import '../styles/MedicalHistory.css'
+import PageHeader from '../components/PageHeader'
 
-function MedicalHistory({ onComplete, onLogout }) {
+function MedicalHistory({ userName = "Nayeli Carrizales", onComplete, onLogout }) {
   const [medicalData, setMedicalData] = useState({
     hasDisease: '',
     diseaseDescription: '',
@@ -25,6 +25,14 @@ function MedicalHistory({ onComplete, onLogout }) {
   })
 
   const [currentStep, setCurrentStep] = useState(1)
+
+  const progressIndicators = [
+    { icon: '📊', status: 'completed' },
+    { icon: '❤️', status: 'active' },
+    { icon: '🏃‍♀️', status: '' },
+    { icon: '🎯', status: '' },
+    { icon: '📋', status: '' }
+  ]
 
   const handleInputChange = (field, value) => {
     setMedicalData(prev => ({
@@ -68,35 +76,19 @@ function MedicalHistory({ onComplete, onLogout }) {
   }
 
   return (
-    <div className="medical-history">
+    <div className="medical-history-container">
       <Navbar onLogout={onLogout} />
-      <div className="medical-container">
-        <div className="medical-header">
-          <div className="user-info">
-            <div className="user-avatar-icon">
-              👤
-            </div>
-            <div className="user-text">
-              <h2>Nutrición</h2>
-              <h1>Hola, Nayeli Carrizales</h1>
-              <p>Para brindarte una mejor atención, contesta las siguientes preguntas. La información es confidencial y esencial para crear tu perfil y que recibas la mejor atención.</p>
-            </div>
-          </div>
-          
-          <div className="progress-indicators">
-            <div className="indicator completed">📊</div>
-            <div className="indicator active">❤️</div>
-            <div className="indicator">🏃‍♀️</div>
-            <div className="indicator">🎯</div>
-            <div className="indicator">📋</div>
-          </div>
-        </div>
+      <div className="medical-history-content">
+        <PageHeader 
+          title="Historial médico"
+          userName={userName}
+          description="Para brindarte una mejor atención, contesta las siguientes preguntas. La información es confidencial y esencial para crear tu perfil y que recibas la mejor atención."
+          indicators={progressIndicators} 
+        />
 
-        <div className="medical-content">
-          <div className="section-header">
-            <div className="section-icon">❤️</div>
-            <h2>Historial médico</h2>
-          </div>
+        <div className="medical-form">
+          <div className="section">
+            <h3>❤️ Historial médico</h3>
 
           <div className="questions-grid">
             {/* Pregunta 1: Enfermedades */}
@@ -114,7 +106,7 @@ function MedicalHistory({ onComplete, onLogout }) {
                   <span className="radio-custom"></span>
                   Sí
                 </label>
-                <label className="radio-option selected">
+                <label className="radio-option">
                   <input
                     type="radio"
                     name="hasDisease"
@@ -132,7 +124,7 @@ function MedicalHistory({ onComplete, onLogout }) {
             <div className="question-block">
               <h3>¿Tienes alguna alergia?</h3>
               <div className="radio-group">
-                <label className="radio-option selected">
+                <label className="radio-option">
                   <input
                     type="radio"
                     name="hasAllergy"
@@ -172,7 +164,7 @@ function MedicalHistory({ onComplete, onLogout }) {
             <div className="question-block">
               <h3>¿Te han hecho alguna cirugía?</h3>
               <div className="radio-group">
-                <label className="radio-option selected">
+                <label className="radio-option">
                   <input
                     type="radio"
                     name="hasSurgery"
@@ -469,17 +461,18 @@ function MedicalHistory({ onComplete, onLogout }) {
             </div>
           </div>
 
-          <div className="save-section">
-            <p>Deseo continuar después.</p>
-            <button type="button" className="save-btn">
-              💾 Guardar mi avance
-            </button>
-          </div>
+          <div className="form-actions">
+            <div className="save-progress">
+              <span>Deseo continuar después.</span>
+              <button type="button" className="save-btn">
+                💾 Guardar mi avance
+              </button>
+            </div>
 
-          <div className="action-section">
             <button className="continue-btn" onClick={handleContinue}>
               Continuar
             </button>
+          </div>
           </div>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import Navbar from '../components/Navbar'
-import '../styles/Nutrition.css'
 
 function Nutrition({ onLogout }) {
   return (

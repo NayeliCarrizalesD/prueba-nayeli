@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Navbar from '../components/Navbar'
-import '../styles/Contact.css'
 
 function Contact({ onLogout }) {
   const [formData, setFormData] = useState({

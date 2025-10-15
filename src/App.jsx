@@ -8,13 +8,19 @@ import Nutrition from './pages/Nutrition'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import MedicalHistory from './pages/MedicalHistory'
-import './styles/App.css'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [hasVerifiedData, setHasVerifiedData] = useState(false)
   const [hasCompletedGoals, setHasCompletedGoals] = useState(false)
   const [hasCompletedMedicalHistory, setHasCompletedMedicalHistory] = useState(false)
+  const [userData, setUserData] = useState({
+    name: "Nayeli Carrizales",
+    age: "22 años",
+    email: "nayeli.carrizales@gmail.com",
+    phone: "01 55 5530 6750",
+    workplace: "Desarrolladora Frontend React"
+  })
   const navigate = useNavigate()
 
   // Verificar si hay una sesión guardada al cargar la app
@@ -23,6 +29,7 @@ function App() {
     const dataVerified = localStorage.getItem('dataVerified')
     const goalsCompleted = localStorage.getItem('goalsCompleted')
     const medicalHistoryCompleted = localStorage.getItem('medicalHistoryCompleted')
+    const savedUserData = localStorage.getItem('userData')
     
     if (savedAuth === 'true') {
       setIsAuthenticated(true)
@@ -39,6 +46,10 @@ function App() {
     if (medicalHistoryCompleted === 'true') {
       setHasCompletedMedicalHistory(true)
     }
+    
+    if (savedUserData) {
+      setUserData(JSON.parse(savedUserData))
+    }
   }, [])
 
   const handleLogin = (success) => {
@@ -53,6 +64,11 @@ function App() {
     localStorage.setItem('dataVerified', 'true')
   }
 
+  const handleUserDataUpdate = (newUserData) => {
+    setUserData(newUserData)
+    localStorage.setItem('userData', JSON.stringify(newUserData))
+  }
+
   const handleDataVerificationFromRoute = () => {
     // Navegar directamente a goals usando navigate
     console.log('Navigating to goals from home')
@@ -62,6 +78,8 @@ function App() {
   const handleGoalsComplete = () => {
     setHasCompletedGoals(true)
     localStorage.setItem('goalsCompleted', 'true')
+    // Navegar automáticamente al historial médico
+    navigate('/medical-history')
   }
 
   const handleMedicalHistoryComplete = () => {
@@ -74,12 +92,20 @@ function App() {
     setHasVerifiedData(false)
     setHasCompletedGoals(false)
     setHasCompletedMedicalHistory(false)
+    setUserData({
+      name: "Nayeli Carrizales",
+      age: "22 años", 
+      email: "nayeli.carrizales@gmail.com",
+      phone: "01 55 5530 6750",
+      workplace: "Desarrolladora Frontend React"
+    })
     localStorage.removeItem('isAuthenticated')
     localStorage.removeItem('dataVerified')
     localStorage.removeItem('goalsCompleted')
     localStorage.removeItem('medicalHistoryCompleted')
     localStorage.removeItem('userGoals')
     localStorage.removeItem('medicalHistory')
+    localStorage.removeItem('userData')
   }
 
   // Si no está autenticado, mostrar login
@@ -96,19 +122,19 @@ function App() {
           <Route path="/" element={
             // Lógica de flujo solo para la ruta raíz
             !hasVerifiedData ? (
-              <Home onDataVerified={handleDataVerification} onLogout={handleLogout} />
+              <Home userData={userData} onUserDataUpdate={handleUserDataUpdate} onDataVerified={handleDataVerification} onLogout={handleLogout} />
             ) : !hasCompletedGoals ? (
-              <Goals onComplete={handleGoalsComplete} onLogout={handleLogout} />
+              <Goals userName={userData.name} onComplete={handleGoalsComplete} onLogout={handleLogout} />
             ) : !hasCompletedMedicalHistory ? (
-              <MedicalHistory onComplete={handleMedicalHistoryComplete} onLogout={handleLogout} />
+              <MedicalHistory userName={userData.name} onComplete={handleMedicalHistoryComplete} onLogout={handleLogout} />
             ) : (
               <Nutrition onLogout={handleLogout} />
             )
           } />
           <Route path="/nutrition" element={<Nutrition onLogout={handleLogout} />} />
-          <Route path="/home" element={<Home onDataVerified={handleDataVerificationFromRoute} onLogout={handleLogout} />} />
-          <Route path="/goals" element={<Goals onComplete={handleGoalsComplete} onLogout={handleLogout} />} />
-          <Route path="/medical-history" element={<MedicalHistory onComplete={handleMedicalHistoryComplete} onLogout={handleLogout} />} />
+          <Route path="/home" element={<Home userData={userData} onUserDataUpdate={handleUserDataUpdate} onDataVerified={handleDataVerificationFromRoute} onLogout={handleLogout} />} />
+          <Route path="/goals" element={<Goals userName={userData.name} onComplete={handleGoalsComplete} onLogout={handleLogout} />} />
+          <Route path="/medical-history" element={<MedicalHistory userName={userData.name} onComplete={handleMedicalHistoryComplete} onLogout={handleLogout} />} />
           <Route path="/about" element={<About onLogout={handleLogout} />} />
           <Route path="/contact" element={<Contact onLogout={handleLogout} />} />
         </Routes>

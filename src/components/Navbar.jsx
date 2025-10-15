@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import '../styles/Navbar.css'
 
 function Navbar({ onLogout }) {
   const handleLogout = () => {
@@ -13,18 +12,22 @@ function Navbar({ onLogout }) {
       <div className="nav-container">
         <Link to="/" className="nav-logo">
           <img 
-            src="https://via.placeholder.com/40x40/FFD61B/333333?text=S" 
+            src="/logo.png" 
             alt="Salinas Logo" 
             className="logo-img"
           />
-          <span>SALINAS</span>
+          
         </Link>
-        <ul className="nav-menu">
+        
+        <ul className="nav-menu-center">
           <li className="nav-item">
             <Link to="/goals" className="nav-link">
               Nutrición
             </Link>
           </li>
+        </ul>
+        
+        <ul className="nav-menu-right">
           <li className="nav-item">
             <Link to="/home" className="nav-link user-link" title="Ver perfil de usuario">
               👤 Perfil
