@@ -1,9 +1,12 @@
+import Navbar from '../components/Navbar'
 import './Nutrition.css'
 
-function Nutrition() {
+function Nutrition({ onLogout }) {
   return (
     <div className="nutrition">
-      <div className="nutrition-header">
+      <Navbar onLogout={onLogout} />
+      <div className="nutrition-container">
+        <div className="nutrition-header">
         <h1>Nutrición</h1>
         <p>Gestiona tu plan nutricional y hábitos alimenticios</p>
       </div>
@@ -122,6 +125,7 @@ function Nutrition() {
             💧 Registrar Agua
           </button>
         </div>
+      </div>
       </div>
     </div>
   )

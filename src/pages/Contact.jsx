@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import Navbar from '../components/Navbar'
 import './Contact.css'
 
-function Contact() {
+function Contact({ onLogout }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,9 +34,12 @@ function Contact() {
   if (submitted) {
     return (
       <div className="contact">
-        <div className="success-message">
-          <h1>¡Mensaje Enviado! ✅</h1>
-          <p>Gracias por contactarnos. Te responderemos pronto.</p>
+        <Navbar onLogout={onLogout} />
+        <div className="contact-container">
+          <div className="success-message">
+            <h1>¡Mensaje Enviado! ✅</h1>
+            <p>Gracias por contactarnos. Te responderemos pronto.</p>
+          </div>
         </div>
       </div>
     )
@@ -43,7 +47,9 @@ function Contact() {
 
   return (
     <div className="contact">
-      <h1>Contacto</h1>
+      <Navbar onLogout={onLogout} />
+      <div className="contact-container">
+        <h1>Contacto</h1>
       
       <div className="contact-content">
         <div className="contact-info">
@@ -109,6 +115,7 @@ function Contact() {
             Enviar Mensaje
           </button>
         </form>
+        </div>
       </div>
     </div>
   )

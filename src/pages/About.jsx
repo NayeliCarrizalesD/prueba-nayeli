@@ -1,9 +1,12 @@
+import Navbar from '../components/Navbar'
 import './About.css'
 
-function About() {
+function About({ onLogout }) {
   return (
     <div className="about">
-      <h1>Acerca de esta App</h1>
+      <Navbar onLogout={onLogout} />
+      <div className="about-container">
+        <h1>Acerca de esta App</h1>
       
       <div className="about-content">
         <section className="about-section">
@@ -42,6 +45,7 @@ function About() {
             de desarrollo frontend. Incluye navegación por rutas, estado local, y una estructura de proyecto organizada.
           </p>
         </section>
+        </div>
       </div>
     </div>
   )

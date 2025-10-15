@@ -67,7 +67,7 @@ function App() {
 
   // Si está autenticado pero no ha verificado datos, mostrar Home
   if (isAuthenticated && !hasVerifiedData) {
-    return <Home onDataVerified={handleDataVerification} />
+    return <Home onDataVerified={handleDataVerification} onLogout={handleLogout} />
   }
 
   // Si ha verificado datos pero no ha completado objetivos, mostrar Goals
@@ -75,16 +75,15 @@ function App() {
     return <Goals onComplete={handleGoalsComplete} />
   }
 
-  // Si ha completado todo, mostrar la aplicación normal con navbar
+  // Si ha completado todo, mostrar la aplicación normal
   return (
     <div className="App">
-      <Navbar onLogout={handleLogout} />
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<Nutrition />} />
-          <Route path="/nutrition" element={<Nutrition />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/" element={<Nutrition onLogout={handleLogout} />} />
+          <Route path="/nutrition" element={<Nutrition onLogout={handleLogout} />} />
+          <Route path="/about" element={<About onLogout={handleLogout} />} />
+          <Route path="/contact" element={<Contact onLogout={handleLogout} />} />
         </Routes>
       </main>
     </div>
