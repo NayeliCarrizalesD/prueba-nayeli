@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
 import Goals from './components/Goals'
@@ -13,6 +13,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [hasVerifiedData, setHasVerifiedData] = useState(false)
   const [hasCompletedGoals, setHasCompletedGoals] = useState(false)
+  const navigate = useNavigate()
 
   // Verificar si hay una sesión guardada al cargar la app
   useEffect(() => {
@@ -45,6 +46,12 @@ function App() {
     localStorage.setItem('dataVerified', 'true')
   }
 
+  const handleDataVerificationFromRoute = () => {
+    // Navegar directamente a goals usando navigate
+    console.log('Navigating to goals from home')
+    navigate('/goals')
+  }
+
   const handleGoalsComplete = () => {
     setHasCompletedGoals(true)
     localStorage.setItem('goalsCompleted', 'true')
@@ -72,7 +79,7 @@ function App() {
 
   // Si ha verificado datos pero no ha completado objetivos, mostrar Goals
   if (isAuthenticated && hasVerifiedData && !hasCompletedGoals) {
-    return <Goals onComplete={handleGoalsComplete} />
+    return <Goals onComplete={handleGoalsComplete} onLogout={handleLogout} />
   }
 
   // Si ha completado todo, mostrar la aplicación normal
@@ -82,6 +89,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Nutrition onLogout={handleLogout} />} />
           <Route path="/nutrition" element={<Nutrition onLogout={handleLogout} />} />
+          <Route path="/home" element={<Home onDataVerified={handleDataVerificationFromRoute} onLogout={handleLogout} />} />
+          <Route path="/goals" element={<Goals onComplete={handleGoalsComplete} onLogout={handleLogout} />} />
           <Route path="/about" element={<About onLogout={handleLogout} />} />
           <Route path="/contact" element={<Contact onLogout={handleLogout} />} />
         </Routes>

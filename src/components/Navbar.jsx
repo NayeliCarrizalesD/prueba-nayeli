@@ -21,8 +21,13 @@ function Navbar({ onLogout }) {
         </Link>
         <ul className="nav-menu">
           <li className="nav-item">
-            <Link to="/nutrition" className="nav-link">
+            <Link to="/goals" className="nav-link">
               Nutrición
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/home" className="nav-link user-link" title="Ver perfil de usuario">
+              👤 Perfil
             </Link>
           </li>
           <li className="nav-item">

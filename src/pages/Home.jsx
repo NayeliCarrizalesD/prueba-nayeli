@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { FaUser, FaBirthdayCake, FaEnvelope, FaPhone, FaBriefcase, FaEdit, FaSave, FaTimes } from 'react-icons/fa'
+import Swal from 'sweetalert2'
 import Navbar from '../components/Navbar'
 import './Home.css'
 
@@ -26,12 +28,22 @@ function Home({ onDataVerified, onLogout }) {
 
   const handleSave = () => {
     setIsEditing(false)
-    // Aquí podrías agregar lógica para guardar los datos
     console.log('Datos guardados:', userData)
+    
+    Swal.fire({
+      title: '¡Datos guardados!',
+      text: 'Tu información ha sido actualizada correctamente.',
+      icon: 'success',
+      confirmButtonText: 'Entendido',
+      confirmButtonColor: '#FFD61B',
+      timer: 3000,
+      timerProgressBar: true
+    })
   }
 
   const handleContinue = () => {
     // Verificar datos y avanzar al siguiente paso (Goals)
+    console.log('handleContinue called')
     onDataVerified()
   }
 
@@ -41,11 +53,9 @@ function Home({ onDataVerified, onLogout }) {
       <div className="profile-container">
         <div className="welcome-section">
           <div className="avatar">
-            <img 
-              src="https://via.placeholder.com/80x80/FFD61B/333333?text=N" 
-              alt="Profile Avatar" 
-              className="avatar-img"
-            />
+            <div className="avatar-icon">
+              👤
+            </div>
           </div>
           <div className="welcome-text">
             <h2>¡Bienvenida</h2>

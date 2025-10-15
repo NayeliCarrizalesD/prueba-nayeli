@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import Navbar from './Navbar'
 import './Goals.css'
 
-function Goals({ onComplete }) {
+function Goals({ onComplete, onLogout }) {
   const [formData, setFormData] = useState({
     currentWeight: '72.0',
     height: '',
@@ -47,17 +48,16 @@ function Goals({ onComplete }) {
 
   return (
     <div className="goals-container">
+      <Navbar onLogout={onLogout} />
       <div className="goals-content">
         <div className="goals-header">
           <div className="user-info">
-            <img 
-              src="https://via.placeholder.com/60x60/FFD61B/333333?text=O" 
-              alt="Oscar Avatar" 
-              className="user-avatar"
-            />
+            <div className="user-avatar-icon">
+              👤
+            </div>
             <div className="user-text">
               <h2>Nutrición</h2>
-              <h1>Hola, Oscar Adan</h1>
+              <h1>Hola, Nayeli Carrizales</h1>
               <p>Para brindarte una mejor atención, contesta las siguientes preguntas. La información es confidencial y esencial para crear tu perfil y que recibas la mejor atención.</p>
             </div>
           </div>
