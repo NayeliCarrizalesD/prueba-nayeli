@@ -1,98 +1,47 @@
-# Mi App React - Proyecto de Nayeli 🚀
+# Aplicación de Nutrición - Salinas
 
-Una aplicación web moderna construida con React y JavaScript.
+Una aplicación web de gestión nutricional construida con React.
 
-## 🛠️ Tecnologías Utilizadas
+## � Requisitos
 
-- **React 18** - Biblioteca de JavaScript para interfaces de usuario
-- **JavaScript ES6+** - Sintaxis moderna de JavaScript
-- **Vite** - Herramienta de construcción rápida
-- **React Router** - Navegación del lado del cliente
-- **CSS3** - Estilos modernos y responsive
+- **Node.js** (versión 16 o superior)
+- **npm** (incluido con Node.js)
 
-## 📁 Estructura del Proyecto
+## 🚀 Instalación y Ejecución
 
-```
-prueba-nayeli/
-├── public/
-│   └── vite.svg
-├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx
-│   │   └── Navbar.css
-│   ├── pages/
-│   │   ├── Home.jsx
-│   │   ├── Home.css
-│   │   ├── About.jsx
-│   │   ├── About.css
-│   │   ├── Contact.jsx
-│   │   └── Contact.css
-│   ├── styles/
-│   │   ├── index.css
-│   │   └── App.css
-│   ├── App.jsx
-│   └── main.jsx
-├── index.html
-├── package.json
-├── vite.config.js
-└── README.md
-```
+1. **Clonar o descargar el proyecto**
+   ```bash
+   git clone [URL_DEL_REPOSITORIO]
+   cd prueba-nayeli
+   ```
 
-## 🚀 Comandos Disponibles
+2. **Instalar dependencias**
+   ```bash
+   npm install
+   ```
 
-### Instalar dependencias
-```bash
-npm install
-```
+3. **Ejecutar la aplicación**
+   ```bash
+   npm run dev
+   ```
 
-### Ejecutar en modo desarrollo
-```bash
-npm run dev
-```
-La aplicación se abrirá en [http://localhost:3000](http://localhost:3000)
+4. **Abrir en el navegador**
+   
+   La aplicación estará disponible en: http://localhost:5173
 
-### Construir para producción
-```bash
-npm run build
-```
+## 🔑 Credenciales de Acceso
 
-### Vista previa de la construcción
-```bash
-npm run preview
-```
+- **Email:** nayeli@salinas.com
+- **Contraseña:** 123456
 
-### Linting del código
-```bash
-npm run lint
-```
+## � Funcionalidades
 
-## ✨ Características
-
-- **Navegación por rutas** - Múltiples páginas con React Router
-- **Contador interactivo** - Ejemplo de estado local con useState
-- **Formulario de contacto** - Manejo de formularios y estado
-- **Diseño responsive** - Se adapta a diferentes tamaños de pantalla
-- **Hot reload** - Recarga automática durante el desarrollo
-- **CSS moderno** - Estilos atractivos y animaciones
-
-## 📄 Páginas Incluidas
-
-1. **Inicio** - Página principal con contador interactivo
-2. **Acerca de** - Información sobre las tecnologías utilizadas
-3. **Contacto** - Formulario de contacto funcional
-
-## 🎯 Próximos Pasos
-
-- Añadir más componentes
-- Integrar con una API
-- Añadir pruebas unitarias
-- Configurar despliegue automático
-- Añadir gestión de estado global (Redux/Context)
-
-## 👩‍💻 Desarrollado por
-
-Nayeli - [GitHub](https://github.com/NayeliCarrizalesD)
+- Sistema de autenticación
+- Verificación de datos de usuario
+- Cuestionario de objetivos nutricionales
+- Historial médico
+- Dashboard de nutrición
 
 ---
 
-¡Disfruta desarrollando con React! 🎉
+**Desarrollado por:** Nayeli Carrizales
