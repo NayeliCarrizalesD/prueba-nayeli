@@ -2,6 +2,8 @@
 // PÁGINA: MEDICAL HISTORY
 // ==========================================================================
 
+@use "sass:color";
+
 .medical-history-container {
   min-height: 100vh;
   background: $gradient-secondary;
@@ -129,11 +131,9 @@
           }
           
           // Estado seleccionado del contenedor
-          input[type="radio"]:checked {
-            & ~ {
-              border-color: $primary-color;
-              background: rgba($primary-color, 0.1);
-            }
+          &:has(input[type="radio"]:checked) {
+            border-color: $primary-color;
+            background: rgba($primary-color, 0.1);
           }
           
           // Efecto cuando el contenedor tiene el radio seleccionado
@@ -230,7 +230,7 @@
             @include transition(all);
             
             &:hover {
-              background: darken($danger-color, 10%);
+              background: color.adjust($danger-color, $lightness: -10%);
               transform: scale(1.1);
             }
           }
@@ -246,7 +246,7 @@
           gap: $spacing-sm;
           
           &:hover {
-            background: darken($info-color, 10%);
+            background: color.adjust($info-color, $lightness: -10%);
             transform: translateY(-1px);
           }
         }
