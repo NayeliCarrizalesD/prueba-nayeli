@@ -1,4 +1,5 @@
 import Navbar from '../components/Navbar'
+import { FaRunning, FaWeight, FaChartBar, FaUtensils, FaTint } from 'react-icons/fa'
 
 function Nutrition({ onLogout }) {
   return (
@@ -31,7 +32,7 @@ function Nutrition({ onLogout }) {
           </div>
 
           <div className="stat-card">
-            <div className="stat-icon">🏃‍♀️</div>
+            <div className="stat-icon"><FaRunning /></div>
             <div className="stat-info">
               <h3>Ejercicio</h3>
               <p className="stat-number">45 min</p>
@@ -40,7 +41,7 @@ function Nutrition({ onLogout }) {
           </div>
 
           <div className="stat-card">
-            <div className="stat-icon">⚖️</div>
+            <div className="stat-icon"><FaWeight /></div>
             <div className="stat-info">
               <h3>Peso actual</h3>
               <p className="stat-number">65 kg</p>
@@ -115,13 +116,13 @@ function Nutrition({ onLogout }) {
 
         <div className="actions-section">
           <button className="action-btn primary">
-            📊 Ver Reporte Completo
+            <FaChartBar style={{ marginRight: '8px' }} />Ver Reporte Completo
           </button>
           <button className="action-btn secondary">
-            🍽️ Agregar Comida
+            <FaUtensils style={{ marginRight: '8px' }} />Agregar Comida
           </button>
           <button className="action-btn secondary">
-            💧 Registrar Agua
+            <FaTint style={{ marginRight: '8px' }} />Registrar Agua
           </button>
         </div>
       </div>

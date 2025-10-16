@@ -1,7 +1,18 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Navbar from '../components/Navbar'
 import PageHeader from '../components/PageHeader'
+import { 
+  FaWeight, 
+  FaTruck, 
+  FaDumbbell, 
+  FaStethoscope, 
+  FaChartBar, 
+  FaHeart, 
+  FaRunning, 
+  FaClock, 
+  FaClipboardList,
+  FaSave 
+} from 'react-icons/fa'
 
 function Goals({ userName = "Nayeli Carrizales", onComplete, onLogout }) {
   const navigate = useNavigate()
@@ -15,18 +26,18 @@ function Goals({ userName = "Nayeli Carrizales", onComplete, onLogout }) {
   })
 
   const goals = [
-    { id: 'weightLoss', label: 'Pérdida de peso', icon: '⚖️' },
-    { id: 'healthyEating', label: 'Alimentación saludable', icon: '🚚' },
-    { id: 'muscleGain', label: 'Aumento de masa muscular', icon: '💪' },
-    { id: 'diseaseControl', label: 'Control de enfermedades', icon: '🩺' }
+    { id: 'weightLoss', label: 'Pérdida de peso', icon: <FaWeight /> },
+    { id: 'healthyEating', label: 'Alimentación saludable', icon: <FaTruck /> },
+    { id: 'muscleGain', label: 'Aumento de masa muscular', icon: <FaDumbbell /> },
+    { id: 'diseaseControl', label: 'Control de enfermedades', icon: <FaStethoscope /> }
   ]
 
   const progressIndicators = [
-    { icon: '📊', status: 'active' },
-    { icon: '❤️', status: '' },
-    { icon: '🏃‍♀️', status: '' },
-    { icon: '⏰', status: '' },
-    { icon: '📋', status: '' }
+    { icon: <FaChartBar />, status: 'active' },
+    { icon: <FaHeart />, status: '' },
+    { icon: <FaRunning />, status: '' },
+    { icon: <FaClock />, status: '' },
+    { icon: <FaClipboardList />, status: '' }
   ]
 
   const handleInputChange = (e) => {
@@ -65,13 +76,12 @@ function Goals({ userName = "Nayeli Carrizales", onComplete, onLogout }) {
 
   return (
     <div className="goals-container">
-      <Navbar onLogout={onLogout} />
       <div className="goals-content">
         <PageHeader userName={userName} indicators={progressIndicators} />
 
         <form className="goals-form" onSubmit={handleSubmit}>
           <div className="section">
-            <h3>📊 Objetivos</h3>
+            <h3><FaChartBar style={{ marginRight: '8px' }} />Objetivos</h3>
             
             <div className="weight-questions">
               <div className="question-group">
@@ -173,7 +183,8 @@ function Goals({ userName = "Nayeli Carrizales", onComplete, onLogout }) {
             <div className="save-progress">
               <span>Deseo continuar después,</span>
               <button type="button" onClick={handleSaveProgress} className="save-btn">
-                💾 Guardar mi avance
+                <FaSave style={{ marginRight: '8px' }} />
+                Guardar mi avance
               </button>
             </div>
             

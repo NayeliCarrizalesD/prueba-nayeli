@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaUser } from 'react-icons/fa'
 
 function PageHeader({ 
   title = "Nutrición", 
@@ -10,7 +11,7 @@ function PageHeader({
     <div className="page-header">
       <div className="user-info">
         <div className="user-avatar-icon">
-          👤
+          <FaUser />
         </div>
         <div className="header-content">
           <div className="user-text">

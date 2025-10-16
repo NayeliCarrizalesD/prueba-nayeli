@@ -1,6 +1,13 @@
 import { useState } from 'react'
-import Navbar from '../components/Navbar'
 import PageHeader from '../components/PageHeader'
+import { 
+  FaChartBar, 
+  FaHeart, 
+  FaRunning, 
+  FaBullseye, 
+  FaClipboardList,
+  FaSave 
+} from 'react-icons/fa'
 
 function MedicalHistory({ userName = "Nayeli Carrizales", onComplete, onLogout }) {
   const [medicalData, setMedicalData] = useState({
@@ -27,11 +34,11 @@ function MedicalHistory({ userName = "Nayeli Carrizales", onComplete, onLogout }
   const [currentStep, setCurrentStep] = useState(1)
 
   const progressIndicators = [
-    { icon: '📊', status: 'completed' },
-    { icon: '❤️', status: 'active' },
-    { icon: '🏃‍♀️', status: '' },
-    { icon: '🎯', status: '' },
-    { icon: '📋', status: '' }
+    { icon: <FaChartBar />, status: 'completed' },
+    { icon: <FaHeart />, status: 'active' },
+    { icon: <FaRunning />, status: '' },
+    { icon: <FaBullseye />, status: '' },
+    { icon: <FaClipboardList />, status: '' }
   ]
 
   const handleInputChange = (field, value) => {
@@ -77,7 +84,6 @@ function MedicalHistory({ userName = "Nayeli Carrizales", onComplete, onLogout }
 
   return (
     <div className="medical-history-container">
-      <Navbar onLogout={onLogout} />
       <div className="medical-history-content">
         <PageHeader 
           title="Historial médico"
@@ -88,7 +94,7 @@ function MedicalHistory({ userName = "Nayeli Carrizales", onComplete, onLogout }
 
         <div className="medical-form">
           <div className="section">
-            <h3>❤️ Historial médico</h3>
+            <h3><FaHeart style={{ marginRight: '8px' }} />Historial médico</h3>
 
           <div className="questions-grid">
             {/* Pregunta 1: Enfermedades */}
@@ -465,7 +471,8 @@ function MedicalHistory({ userName = "Nayeli Carrizales", onComplete, onLogout }
             <div className="save-progress">
               <span>Deseo continuar después.</span>
               <button type="button" className="save-btn">
-                💾 Guardar mi avance
+                <FaSave style={{ marginRight: '8px' }} />
+                Guardar mi avance
               </button>
             </div>
 

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { FaExclamationTriangle } from 'react-icons/fa'
 
 function Login({ onLogin }) {
   const [credentials, setCredentials] = useState({
@@ -81,7 +82,7 @@ function Login({ onLogin }) {
 
           {error && (
             <div className="error-message">
-              <span>⚠️ {error}</span>
+              <span><FaExclamationTriangle style={{ marginRight: '8px' }} />{error}</span>
             </div>
           )}
 

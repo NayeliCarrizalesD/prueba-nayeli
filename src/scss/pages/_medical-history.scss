@@ -9,7 +9,7 @@
 }
 
 .medical-history-content {
-  max-width: 1200px;
+  max-width: 800px;
   margin: 2rem auto;
   background: white;
   border-radius: 20px;
@@ -37,17 +37,18 @@
   .questions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: $spacing-xl;
+    gap: $spacing-lg;
     
     @include mobile {
       grid-template-columns: 1fr;
-      gap: $spacing-lg;
+      gap: $spacing-md;
     }
     
     .question-block {
       @include card;
       background: $gray-100;
       border-left: 4px solid $primary-color;
+      padding: $spacing-md; // Menos padding que el card por defecto
       
       &.full-width {
         grid-column: 1 / -1;
@@ -57,7 +58,7 @@
         color: $text-primary;
         font-size: $font-size-lg;
         font-weight: $font-weight-semibold;
-        margin-bottom: $spacing-lg;
+        margin-bottom: $spacing-md;
         line-height: 1.4;
       }
       
@@ -75,7 +76,7 @@
           @include flex(row, flex-start, center);
           gap: $spacing-md;
           cursor: pointer;
-          padding: $spacing-lg;
+          padding: $spacing-md;
           border: 2px solid $border-color;
           border-radius: $border-radius-md;
           @include transition(all);

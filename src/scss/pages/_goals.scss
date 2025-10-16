@@ -2,21 +2,90 @@
 // PÁGINA: GOALS - Migrado de Goals.css con SASS
 // ==========================================================================
 
+// Cuando Goals está dentro del main-content (con navbar)
+.main-content .goals-container {
+  min-height: calc(100vh - 80px); // Resta la altura del navbar
+  background: #f8f9fa;
+  padding-top: 2rem; // Espacio entre navbar y contenido
+}
+
+// Cuando Goals está como página completa (sin navbar)
 .goals-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  display: flex;
-  flex-direction: column;
+  background: #f8f9fa;
 }
 
 .goals-content {
-  max-width: 1200px;
-  margin: 2rem auto;
+  max-width: 800px;
+  margin: 0 auto;
   background: white;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  flex: 1;
+}
+
+.goals-header {
+  background: linear-gradient(135deg, #FFD61B 0%, #F7B733 100%);
+  padding: 2rem;
+  color: #333;
+}
+
+.user-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid white;
+  flex-shrink: 0;
+}
+
+.user-text h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+  opacity: 0.8;
+}
+
+.user-text h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.user-text p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.progress-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.indicator {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+
+  &.active {
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
 }
 
 .goals-form {
@@ -106,7 +175,7 @@
   background: #f8f9fa;
   border: 2px solid #e9ecef;
   border-radius: 12px;
-  padding: 1.2rem;
+  padding: 0.8rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -198,10 +267,6 @@
 
 // RESPONSIVE
 @media (max-width: 768px) {
-  .goals-container {
-    padding: 1rem;
-  }
-  
   .goals-header {
     padding: 1.5rem;
   }

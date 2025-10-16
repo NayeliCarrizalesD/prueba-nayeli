@@ -5,7 +5,6 @@ import Login from './components/Login'
 import Goals from './pages/Goals'
 import Home from './pages/Home'
 import Nutrition from './pages/Nutrition'
-import About from './pages/About'
 import Contact from './pages/Contact'
 import MedicalHistory from './pages/MedicalHistory'
 
@@ -113,17 +112,20 @@ function App() {
     return <Login onLogin={handleLogin} />
   }
 
-  // Si está autenticado, permitir navegación libre con rutas
-  // Solo forzar el flujo inicial si el usuario va directamente a la raíz "/"
+  // Si está autenticado pero no ha verificado datos, mostrar Home sin navbar
+  if (isAuthenticated && !hasVerifiedData) {
+    return <Home userData={userData} onUserDataUpdate={handleUserDataUpdate} onDataVerified={handleDataVerification} onLogout={handleLogout} />
+  }
+
+  // Si ha verificado datos, mostrar la aplicación con navbar
   return (
     <div className="App">
+      <Navbar onLogout={handleLogout} />
       <main className="main-content">
         <Routes>
           <Route path="/" element={
-            // Lógica de flujo solo para la ruta raíz
-            !hasVerifiedData ? (
-              <Home userData={userData} onUserDataUpdate={handleUserDataUpdate} onDataVerified={handleDataVerification} onLogout={handleLogout} />
-            ) : !hasCompletedGoals ? (
+            // Lógica de flujo para después de verificar datos
+            !hasCompletedGoals ? (
               <Goals userName={userData.name} onComplete={handleGoalsComplete} onLogout={handleLogout} />
             ) : !hasCompletedMedicalHistory ? (
               <MedicalHistory userName={userData.name} onComplete={handleMedicalHistoryComplete} onLogout={handleLogout} />
@@ -135,7 +137,6 @@ function App() {
           <Route path="/home" element={<Home userData={userData} onUserDataUpdate={handleUserDataUpdate} onDataVerified={handleDataVerificationFromRoute} onLogout={handleLogout} />} />
           <Route path="/goals" element={<Goals userName={userData.name} onComplete={handleGoalsComplete} onLogout={handleLogout} />} />
           <Route path="/medical-history" element={<MedicalHistory userName={userData.name} onComplete={handleMedicalHistoryComplete} onLogout={handleLogout} />} />
-          <Route path="/about" element={<About onLogout={handleLogout} />} />
           <Route path="/contact" element={<Contact onLogout={handleLogout} />} />
         </Routes>
       </main>

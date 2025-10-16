@@ -4,7 +4,9 @@
 
 .page-header {
   @include card;
-  background: $white;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-dark 100%);
+  color: #333;
+  padding: 2rem;
   
   .user-info {
     @include flex(row, flex-start, flex-start);

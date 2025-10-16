@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { FaUser, FaSignOutAlt } from 'react-icons/fa'
 
 function Navbar({ onLogout }) {
   const handleLogout = () => {
@@ -30,12 +31,12 @@ function Navbar({ onLogout }) {
         <ul className="nav-menu-right">
           <li className="nav-item">
             <Link to="/home" className="nav-link user-link" title="Ver perfil de usuario">
-              👤
+              <FaUser />
             </Link>
           </li>
           <li className="nav-item">
             <button onClick={handleLogout} className="logout-btn">
-              Salir 🚪
+              Salir <FaSignOutAlt style={{ marginLeft: '8px' }} />
             </button>
           </li>
         </ul>
